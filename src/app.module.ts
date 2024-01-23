@@ -3,8 +3,21 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import 'dotenv/config';
-import { Course, Progress, ProgressLesson, Question, User } from './model';
-import { Lesson } from './model/lesson.model';
+import {
+  Course,
+  Lesson,
+  Progress,
+  ProgressLesson,
+  Question,
+  User,
+} from './database/model';
+import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './auth/auth.module';
+import { CourseModule } from './course/course.module';
+import { LessonModule } from './lesson/lesson.module';
+import { ProcessModule } from './process/process.module';
+import { UserModule } from './user/user.module';
+import { QuestionModule } from './question/question.module';
 
 @Module({
   imports: [
@@ -19,6 +32,13 @@ import { Lesson } from './model/lesson.model';
       autoLoadModels: true,
       synchronize: true,
     }),
+    DatabaseModule,
+    AuthModule,
+    CourseModule,
+    LessonModule,
+    ProcessModule,
+    UserModule,
+    QuestionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

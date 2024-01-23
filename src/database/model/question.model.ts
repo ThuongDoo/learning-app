@@ -1,4 +1,5 @@
 import {
+  AllowNull,
   BelongsTo,
   Column,
   DataType,
@@ -10,20 +11,22 @@ import { Lesson } from './lesson.model';
 
 @Table({ timestamps: true })
 export class Question extends Model {
-  @Column
-  order: number;
-
+  @AllowNull(false)
   @Column
   questionText: string;
 
-  @Column(DataType.ARRAY(DataType.STRING))
+  @AllowNull(false)
+  @Column(DataType.JSON)
   options: string[];
 
-  @Column(DataType.ARRAY(DataType.NUMBER))
+  @AllowNull(false)
+  @Column(DataType.JSON)
   correctAnswers: number[];
 
+  @AllowNull(false)
   @ForeignKey(() => Lesson)
-  lessonId: Lesson;
+  @Column
+  lessonId: number;
 
   @BelongsTo(() => Lesson)
   lesson: Lesson;

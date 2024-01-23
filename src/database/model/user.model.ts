@@ -1,8 +1,10 @@
 import {
+  AllowNull,
   BelongsToMany,
   Column,
   DataType,
   Default,
+  HasMany,
   IsEmail,
   Model,
   Table,
@@ -19,21 +21,25 @@ export class User extends Model {
   @Column
   email: string;
 
-  @Default('123456')
+  @AllowNull(false)
   @Column
   password: string;
 
   @Column
-  firstName?: string;
+  firstName: string;
 
   @Column
-  lastName?: string;
+  lastName: string;
 
   @Default(
     'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg',
   )
   @Column
   photo: string;
+
+  @Default(100)
+  @Column
+  points: number;
 
   @Column({
     type: DataType.ENUM,
@@ -43,5 +49,8 @@ export class User extends Model {
   role: UserRole;
 
   @BelongsToMany(() => Course, () => Progress)
-  courses: Course[];
+  enrolledCourses: Course[];
+
+  @HasMany(() => Course)
+  createdCourses: Course[];
 }

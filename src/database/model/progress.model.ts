@@ -1,4 +1,5 @@
 import {
+  AllowNull,
   BelongsToMany,
   Column,
   DataType,
@@ -22,10 +23,12 @@ export class Progress extends Model {
   @Column(DataType.FLOAT)
   correctPercentage: number;
 
+  @AllowNull(false)
   @ForeignKey(() => User)
   @Column
   userId: number;
 
+  @AllowNull(false)
   @ForeignKey(() => Course)
   @Column
   courseId: number;

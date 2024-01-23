@@ -1,7 +1,10 @@
 import {
   AllowNull,
+  BelongsTo,
   BelongsToMany,
   Column,
+  Default,
+  ForeignKey,
   HasMany,
   Model,
   Table,
@@ -19,8 +22,17 @@ export class Course extends Model {
   @Column
   description: string;
 
+  @Default(0)
   @Column
   price: number;
+
+  @AllowNull(false)
+  @ForeignKey(() => User)
+  @Column
+  ownerId: number;
+
+  @BelongsTo(() => User)
+  user: User;
 
   @HasMany(() => Lesson)
   lessons: Lesson[];

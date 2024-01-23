@@ -1,4 +1,5 @@
 import {
+  AllowNull,
   Column,
   DataType,
   Default,
@@ -11,6 +12,7 @@ import { Lesson } from './lesson.model';
 
 @Table({ timestamps: true })
 export class ProgressLesson extends Model {
+  @Default(0)
   @Column(DataType.FLOAT)
   correctPercentage: number;
 
@@ -21,9 +23,13 @@ export class ProgressLesson extends Model {
   @Column(DataType.JSON)
   answers: object;
 
+  @AllowNull(false)
   @ForeignKey(() => Progress)
+  @Column
   progressId: number;
 
+  @AllowNull(false)
   @ForeignKey(() => Lesson)
+  @Column
   lessonId: number;
 }

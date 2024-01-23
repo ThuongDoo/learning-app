@@ -1,4 +1,5 @@
 import {
+  AllowNull,
   BelongsTo,
   BelongsToMany,
   Column,
@@ -14,6 +15,7 @@ import { ProgressLesson } from './progress-lesson.model';
 
 @Table({ timestamps: true })
 export class Lesson extends Model {
+  @AllowNull(false)
   @Column
   title: string;
 
@@ -26,6 +28,7 @@ export class Lesson extends Model {
   @Column
   video: string;
 
+  @AllowNull(false)
   @ForeignKey(() => Course)
   @Column
   courseId: number;
