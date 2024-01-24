@@ -1,11 +1,13 @@
 import {
   AllowNull,
+  AutoIncrement,
   BelongsToMany,
   Column,
   DataType,
   Default,
   ForeignKey,
   Model,
+  PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { User } from './user.model';
@@ -15,6 +17,11 @@ import { ProgressLesson } from './progress-lesson.model';
 
 @Table({ timestamps: true })
 export class Progress extends Model {
+  @AutoIncrement
+  @PrimaryKey
+  @Column
+  id: number;
+
   @Default(0)
   @Column(DataType.FLOAT)
   completePercentage: number;

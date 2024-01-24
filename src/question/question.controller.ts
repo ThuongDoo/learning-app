@@ -30,11 +30,13 @@ export class QuestionController {
   }
 
   @Delete(':questionId')
+  @Roles(UserRole.ADMIN, UserRole.TEACHER)
   delteQuestion(@Param('questionId', ParseIntPipe) id: number) {
     return this.questionService.deleteQuestion(id);
   }
 
   @Patch()
+  @Roles(UserRole.ADMIN, UserRole.TEACHER)
   updateQuestion(@Body() editQuestionDto: EditQuestionDto) {
     return this.questionService.updateQuestion(editQuestionDto);
   }

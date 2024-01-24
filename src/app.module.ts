@@ -15,9 +15,9 @@ import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './auth/auth.module';
 import { CourseModule } from './course/course.module';
 import { LessonModule } from './lesson/lesson.module';
-import { ProcessModule } from './process/process.module';
 import { UserModule } from './user/user.module';
 import { QuestionModule } from './question/question.module';
+import { ProgressModule } from './progress/progress.module';
 
 @Module({
   imports: [
@@ -36,9 +36,9 @@ import { QuestionModule } from './question/question.module';
     AuthModule,
     CourseModule,
     LessonModule,
-    ProcessModule,
     UserModule,
     QuestionModule,
+    ProgressModule,
   ],
   controllers: [AppController],
   providers: [AppService],

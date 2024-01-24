@@ -1,10 +1,12 @@
 import {
   AllowNull,
+  AutoIncrement,
   Column,
   DataType,
   Default,
   ForeignKey,
   Model,
+  PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { Progress } from './progress.model';
@@ -12,6 +14,11 @@ import { Lesson } from './lesson.model';
 
 @Table({ timestamps: true })
 export class ProgressLesson extends Model {
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+  id: number;
+
   @Default(0)
   @Column(DataType.FLOAT)
   correctPercentage: number;
